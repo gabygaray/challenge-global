@@ -1,0 +1,1 @@
+docker stop auth_ms_postgres

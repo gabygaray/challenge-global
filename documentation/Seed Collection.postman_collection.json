@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "4d6193e1-0e07-4a92-b1da-59ed107275cb",
+		"name": "Seed Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12755540"
+	},
+	"item": [
+		{
+			"name": "Example Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hola que tal\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}/{{prefix}}/example",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{prefix}}",
+						"example"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
