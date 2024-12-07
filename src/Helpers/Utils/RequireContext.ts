@@ -1,6 +1,4 @@
-export function importAllFromRequireContext(
-    requireContext: __WebpackModuleApi.RequireContext,
-) {
+export function importAllFromRequireContext(requireContext: __WebpackModuleApi.RequireContext) {
     const importedModules: any = requireContext.keys().map((filename) => {
         const required = requireContext(filename);
 

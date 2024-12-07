@@ -27,7 +27,7 @@ import { PerformanceMiddleware } from './Helpers/Middlewares/PerformanceMiddlewa
 })
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
-        if (process.env.USERS_CCU_ENV === 'local' || process.env.USERS_CCU_ENV === 'dev') {
+        if (process.env.USERS_MS_AUTH === 'local' || process.env.USERS_MS_AUTH === 'dev') {
             consumer.apply(PerformanceMiddleware).forRoutes({ path: '*', method: RequestMethod.ALL });
         }
     }

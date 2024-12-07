@@ -8,14 +8,14 @@ import { envFilePathConfiguration } from './src/Configs/EnvFilePathConfig';
 
 let envs;
 
-if (process.env.USERS_CCU_ENV === 'local') {
+if (process.env.USERS_MS_AUTH === 'local') {
     const envData = Dotenv.config({
         path: `${path.join(process.env.PWD)}/${envFilePathConfiguration()}`,
     }).parsed;
-    logger.info(`TYPEORM ENVIRONMENT: ${process.env.USERS_CCU_ENV}\nDATABASE CONNECTION: ${process.env.DATABASE_HOST}`);
+    logger.info(`TYPEORM ENVIRONMENT: ${process.env.USERS_MS_AUTH}\nDATABASE CONNECTION: ${process.env.DATABASE_HOST}`);
     envs = envModelTransformer(envData);
 } else {
-    logger.info(`TYPEORM ENVIRONMENT: ${process.env.USERS_CCU_ENV}\nDATABASE CONNECTION: ${process.env.DATABASE_HOST}`);
+    logger.info(`TYPEORM ENVIRONMENT: ${process.env.USERS_MS_AUTH}\nDATABASE CONNECTION: ${process.env.DATABASE_HOST}`);
     envs = envModelTransformer(process.env);
 }
 
