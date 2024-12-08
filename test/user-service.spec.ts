@@ -1,13 +1,13 @@
 import { TestingModule, Test } from '@nestjs/testing';
-import { UserDao } from 'src/Daos/UserDao';
-import { UserProfileDao } from 'src/Daos/UserProfileDao';
-import { User } from 'src/Models/Entities/UserEntity';
-import { UserProfile } from 'src/Models/Entities/UserProfileEntity';
-import CreateUserRequest from 'src/Models/Request/User/CreateUserRequest';
-import UpdateUserRequest from 'src/Models/Request/User/UpdateUserRequest';
-import SuccessfulResponse from 'src/Models/Response/SuccessfulResponse';
-import { GetUserResponse } from 'src/Models/Response/User/GetUserResponse';
-import { UserService } from 'src/Services/UserService';
+import { UserDao } from '@src/Daos/UserDao';
+import { UserProfileDao } from '@src/Daos/UserProfileDao';
+import { User } from '@src/Models/Entities/UserEntity';
+import { UserProfile } from '@src/Models/Entities/UserProfileEntity';
+import CreateUserRequest from '@src/Models/Request/User/CreateUserRequest';
+import UpdateUserRequest from '@src/Models/Request/User/UpdateUserRequest';
+import SuccessfulResponse from '@src/Models/Response/SuccessfulResponse';
+import { GetUserResponse } from '@src/Models/Response/User/GetUserResponse';
+import { UserService } from '@src/Services/UserService';
 
 describe('UserService', () => {
     let userService: UserService;
@@ -59,11 +59,11 @@ describe('UserService', () => {
     });
 
     it('should list users', async () => {
-        const users: User[] = [];
+        const users: User[] = [new User()];
         jest.spyOn(userDao, 'listUsers').mockResolvedValue(users);
 
         const result = await userService.listUsers();
-        expect(result).toEqual([]);
+        expect(result).toEqual(users);
     });
 
     it('should find a user by id', async () => {

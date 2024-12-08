@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserProfile } from 'src/Models/Entities/UserProfileEntity';
+import { UserProfile } from '../Models/Entities/UserProfileEntity';
 
 @Injectable()
 export class UserProfileDao {

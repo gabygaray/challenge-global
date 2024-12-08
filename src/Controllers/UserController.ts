@@ -1,17 +1,17 @@
 import { Controller, Post, Get, Param, Body, Put, Delete } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { UserService } from '../Services/UserService';
-import CreateUserRequest from 'src/Models/Request/User/CreateUserRequest';
+import CreateUserRequest from '../Models/Request/User/CreateUserRequest';
 import SuccessfulResponse from '../Models/Response/SuccessfulResponse';
-import UpdateUserRequest from 'src/Models/Request/User/UpdateUserRequest';
-import { GetUserResponse } from 'src/Models/Response/User/GetUserResponse';
+import UpdateUserRequest from '../Models/Request/User/UpdateUserRequest';
+import { GetUserResponse } from '../Models/Response/User/GetUserResponse';
 import {
     createUserResponse,
     listUsersResponse,
     findUserByIdResponse,
     updateUserByIdResponse,
     deleteUserByIdResponse,
-} from 'src/Models/Response/User/SwaggerResponse';
+} from '../Models/Response/User/SwaggerResponse';
 
 @ApiTags('users')
 @Controller('users')

@@ -1,6 +1,6 @@
 import { ApiResponseOptions } from '@nestjs/swagger';
 import SuccessfulResponse from '../SuccessfulResponse';
-import { User } from 'src/Models/Entities/UserEntity';
+import { User } from '@src/Models/Entities/UserEntity';
 
 export const createUserResponse: ApiResponseOptions = {
     status: 201,

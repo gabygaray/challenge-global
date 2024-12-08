@@ -1,12 +1,12 @@
 import { TestingModule, Test } from '@nestjs/testing';
-import { UserController } from 'src/Controllers/UserController';
-import { UserDao } from 'src/Daos/UserDao';
-import { User } from 'src/Models/Entities/UserEntity';
-import CreateUserRequest from 'src/Models/Request/User/CreateUserRequest';
-import UpdateUserRequest from 'src/Models/Request/User/UpdateUserRequest';
-import SuccessfulResponse from 'src/Models/Response/SuccessfulResponse';
-import { GetUserResponse } from 'src/Models/Response/User/GetUserResponse';
-import { UserService } from 'src/Services/UserService';
+import { UserController } from '@src/Controllers/UserController';
+import { UserDao } from '@src/Daos/UserDao';
+import { User } from '@src/Models/Entities/UserEntity';
+import CreateUserRequest from '@src/Models/Request/User/CreateUserRequest';
+import UpdateUserRequest from '@src/Models/Request/User/UpdateUserRequest';
+import SuccessfulResponse from '@src/Models/Response/SuccessfulResponse';
+import { GetUserResponse } from '@src/Models/Response/User/GetUserResponse';
+import { UserService } from '@src/Services/UserService';
 
 describe('UserController', () => {
     let userController: UserController;

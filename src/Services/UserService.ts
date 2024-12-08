@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { UserDao } from '../Daos/UserDao';
 import { User } from '../Models/Entities/UserEntity';
 import SuccessfulResponse from '../Models/Response/SuccessfulResponse';
-import CreateUserRequest from 'src/Models/Request/User/CreateUserRequest';
-import HttpCustomException from 'src/Exceptions/HttpCustomException';
-import { StatusCodeEnums } from 'src/Enums/StatusCodeEnums';
-import { UserProfileDao } from 'src/Daos/UserProfileDao';
-import UpdateUserRequest from 'src/Models/Request/User/UpdateUserRequest';
-import { GetUserResponse } from 'src/Models/Response/User/GetUserResponse';
+import CreateUserRequest from '../Models/Request/User/CreateUserRequest';
+import HttpCustomException from '../Exceptions/HttpCustomException';
+import { StatusCodeEnums } from '../Enums/StatusCodeEnums';
+import { UserProfileDao } from '../Daos/UserProfileDao';
+import UpdateUserRequest from '../Models/Request/User/UpdateUserRequest';
+import { GetUserResponse } from '../Models/Response/User/GetUserResponse';
 
 @Injectable()
 export class UserService {

@@ -16,6 +16,9 @@
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "allowJs": true,
-    "moduleResolution": "node"
-  },
+    "moduleResolution": "node",
+    "paths": {
+      "@src/*": ["src/*"]
+    }
+  }
 }
