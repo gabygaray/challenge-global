@@ -52,9 +52,14 @@ async function initializeDatabase() {
         await tempDataSource.query(`CREATE SCHEMA IF NOT EXISTS "core";`);
         await tempDataSource.destroy();
 
-        // Inicializar la conexión principal
-        await connectionSource.initialize();
-        logger.info('Connection to database established');
+        // Verificar si la conexión ya está inicializada
+        if (!connectionSource.isInitialized) {
+            // Inicializar la conexión principal
+            await connectionSource.initialize();
+            logger.info('Connection to database established');
+        } else {
+            logger.info('Connection to database already established');
+        }
     } catch (error) {
         logger.error('TypeORM connection error: ', error);
     }

@@ -7,11 +7,60 @@ import { User } from '../Models/Entities/UserEntity';
 export class UserDao {
     constructor(@InjectRepository(User) private readonly _userRepository: Repository<User>) {}
 
-    async createUser(user: User): Promise<User> {
+    async create(user: User): Promise<User> {
         return this._userRepository.save(user);
     }
 
-    async findUser(): Promise<User> {
-        return this._userRepository.createQueryBuilder().getOne();
+    async update(user: User): Promise<User> {
+        return this._userRepository.save(user);
+    }
+
+    async deleteById(id: number): Promise<void> {
+        await this._userRepository.delete(id);
+    }
+
+    async findById(id: number): Promise<User> {
+        const query = await this._userRepository
+            .createQueryBuilder('user')
+            .innerJoinAndSelect('user.profile', 'profile')
+            .where('user.id = :id', { id: id })
+            .getOne();
+        if (!query) {
+            return null;
+        }
+
+        return query;
+    }
+
+    async findByEmail(email: string): Promise<User> {
+        const query = await this._userRepository
+            .createQueryBuilder('user')
+            .innerJoinAndSelect('user.profile', 'profile')
+            .where('user.email = :email', { email: email })
+            .getOne();
+        if (!query) {
+            return null;
+        }
+        return query;
+    }
+
+    async findByName(name: string): Promise<User> {
+        const query = await this._userRepository
+            .createQueryBuilder('user')
+            .innerJoinAndSelect('user.profile', 'profile')
+            .where('user.name = :name', { name: name })
+            .getOne();
+        if (!query) {
+            return null;
+        }
+        return query;
+    }
+
+    async listUsers(): Promise<User[]> {
+        const query = await this._userRepository.createQueryBuilder('user').innerJoinAndSelect('user.profile', 'profile').getMany();
+        if (!query) {
+            return [];
+        }
+        return query;
     }
 }

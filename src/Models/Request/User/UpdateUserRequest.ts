@@ -1,41 +1,41 @@
-import { IsNotEmpty, IsString, IsInt } from 'class-validator';
+import { IsString, IsInt, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export default class CreateUserRequest {
+export default class UpdateUserRequest {
     @ApiProperty({
         example: 'Gabriel Garay',
         description: 'Nombre del usuario',
     })
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
-    name: string;
+    name?: string;
 
     @ApiProperty({
         example: 'gabygaray100@gmail.com',
         description: 'Correo del usuario',
     })
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
-    email: string;
+    email?: string;
 
     @ApiProperty({
         example: 30,
         description: 'Edad del usuario',
     })
-    @IsNotEmpty()
+    @IsOptional()
     @IsInt()
-    age: number;
+    age?: number;
 
     @ApiProperty({
         example: 'USER',
         description: 'Código del perfil del usuario',
         default: 'USER',
     })
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
-    profileCode: string;
+    profileCode?: string;
 
-    public constructor(name: string, email: string, age: number, profileCode: string) {
+    public constructor(name?: string, email?: string, age?: number, profileCode?: string) {
         this.name = name;
         this.email = email;
         this.age = age;

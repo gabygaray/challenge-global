@@ -54,6 +54,10 @@ enum StatusCodeEnums {
 
     EVALUATION_NOT_FOUND = 10160,
     EVALUATION_FOUND,
+
+    USER_PROFILE_NOT_FOUND = 10170,
+
+    INVALID_REQUEST = 10180,
 }
 
 const StatusCodeExceptionText: EnumDictionary<StatusCodeEnums, string> = {
@@ -93,6 +97,8 @@ const StatusCodeExceptionText: EnumDictionary<StatusCodeEnums, string> = {
     [StatusCodeEnums.EVALUATION_NOT_FOUND]: 'EVALUATION_NOT_FOUND',
     [StatusCodeEnums.EVALUATION_FOUND]: 'EVALUATION_FOUND',
     [StatusCodeEnums.USER_CREATEDBY_NO_EXISTS]: 'USER_CREATEDBY_NO_EXISTS',
+    [StatusCodeEnums.USER_PROFILE_NOT_FOUND]: 'USER_PROFILE_NOT_FOUND',
+    [StatusCodeEnums.INVALID_REQUEST]: 'INVALID_REQUEST',
 };
 
 export { StatusCodeEnums, StatusCodeExceptionText };

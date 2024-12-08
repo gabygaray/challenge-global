@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { GenericTable } from './GenericTable';
 import { User } from './UserEntity';
 
@@ -13,9 +13,8 @@ export class UserProfile extends GenericTable {
     @Column({ nullable: false, length: 255, comment: 'Nombre del perfil' })
     private name: string;
 
-    @OneToOne(() => User, (user) => user.profile)
-    @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
-    public user: User;
+    @OneToMany(() => User, (user) => user.profile)
+    public users: User[];
 
     public getId(): number {
         return this.id;
@@ -37,11 +36,11 @@ export class UserProfile extends GenericTable {
         this.name = name;
     }
 
-    public getUser(): User {
-        return this.user;
+    public getUsers(): User[] {
+        return this.users;
     }
 
-    public setUser(user: User): void {
-        this.user = user;
+    public setUsers(users: User[]): void {
+        this.users = users;
     }
 }

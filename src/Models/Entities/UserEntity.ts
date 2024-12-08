@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { GenericTable } from './GenericTable';
 import { UserProfile } from './UserProfileEntity';
 
@@ -16,8 +16,7 @@ export class User extends GenericTable {
     @Column({ nullable: false, comment: 'Edad del usuario' })
     private age: number;
 
-    @OneToOne(() => UserProfile, (profile) => profile.user)
-    @JoinColumn({ name: 'profile_id', referencedColumnName: 'id' })
+    @ManyToOne(() => UserProfile, (profile) => profile.users)
     public profile: UserProfile;
 
     public getId(): number {
