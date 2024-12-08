@@ -5,8 +5,9 @@ import * as path from 'path';
 import * as logger from 'better-console-log-plus';
 import { envModelTransformer } from './src/Configs/NestEnvConfig';
 import { envFilePathConfiguration } from './src/Configs/EnvFilePathConfig';
+import { EnvConfigInterface } from 'src/Interfaces/DbConfigInterface';
 
-let envs;
+let envs: EnvConfigInterface;
 
 if (process.env.USERS_MS_AUTH === 'local') {
     const envData = Dotenv.config({
@@ -21,6 +22,7 @@ if (process.env.USERS_MS_AUTH === 'local') {
 
 export const connectionSource = new DataSource({
     migrationsTableName: 'migrations',
+    schema: 'core',
     type: envs.DATABASE.type,
     host: envs.DATABASE.host,
     port: envs.DATABASE.port,
@@ -33,7 +35,29 @@ export const connectionSource = new DataSource({
     entities: ['src/Models/Entities/**/*.{ts,js}'],
 });
 
-connectionSource
-    .initialize()
-    .then(() => logger.info('Connection to database established'))
-    .catch((error) => logger.error('TypeORM connection error: ', error));
+async function initializeDatabase() {
+    try {
+        // Crear el esquema "core" si no existe
+        const tempDataSource = new DataSource({
+            type: envs.DATABASE.type,
+            host: envs.DATABASE.host,
+            port: envs.DATABASE.port,
+            username: envs.DATABASE.username,
+            password: envs.DATABASE.password,
+            database: envs.DATABASE.database,
+            logging: false,
+        });
+
+        await tempDataSource.initialize();
+        await tempDataSource.query(`CREATE SCHEMA IF NOT EXISTS "core";`);
+        await tempDataSource.destroy();
+
+        // Inicializar la conexión principal
+        await connectionSource.initialize();
+        logger.info('Connection to database established');
+    } catch (error) {
+        logger.error('TypeORM connection error: ', error);
+    }
+}
+
+initializeDatabase();
